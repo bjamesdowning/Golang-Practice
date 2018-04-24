@@ -13,8 +13,8 @@ func main() {
 	fmt.Println(evenFib(4000000))
 }
 func evenFib(limit int) int {
-	xs := []int{1, 2}
-	ans := 2
+	xs := []int{0, 1}
+	var ans int
 	for {
 		fib := xs[1] + xs[0]
 		xs = append(xs, fib)
