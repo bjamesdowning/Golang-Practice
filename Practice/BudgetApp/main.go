@@ -13,7 +13,6 @@ type bills []float64
 //Method for Bills to add them together and return total
 func (b bills) sumTotal() float64 {
 	var sum float64
-	fmt.Println(len(b))
 	for i := 0; i < len(b); i++ {
 		sum += b[i]
 	}
@@ -48,5 +47,7 @@ func main() {
 	totalIncome := added(income1)
 	totalBills := added(bill1)
 	savingsRec := (totalIncome - totalBills) * 0.2
-	fmt.Println(" You have ", totalIncome, "total income \n", totalBills, "in bills \n", "Therefore, you should send ", savingsRec, "to savings")
+	fmt.Println(" You have ", totalIncome, "total income \n",
+		totalBills, "in bills \n", "Therefore, you should send ",
+		savingsRec, "to savings")
 }
