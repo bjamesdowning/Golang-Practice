@@ -9,7 +9,7 @@ import (
 * Find the largest palindrome made from the product of two 3-digit numbers.
  */
 
-//Not a very good solution.
+//need to separate different actions.
 func main() {
 	var sum int
 	var lrg int
