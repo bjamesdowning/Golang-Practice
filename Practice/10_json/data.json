@@ -1,0 +1,8 @@
+{
+    "Key1": [1,2,3,4],
+    "Key2": "String 2",
+    "Key3": 100,
+    "Key4": "Value 4",
+    "Key5": {"SubKey1": "SubValue1", "SubKey2":"SubValue2"},
+    "Key6":["arr","of", "strings"]
+}
