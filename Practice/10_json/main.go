@@ -20,5 +20,4 @@ func main() {
 
 	json.NewDecoder(f).Decode(&obj) //Ensure Decode/Encode takes in a pointer
 	fmt.Println(obj)
-
 }
