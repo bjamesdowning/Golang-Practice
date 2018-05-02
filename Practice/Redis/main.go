@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// Command struct used to take in commands for Redis server
 type Command struct {
 	Fields []string
 	Result chan string
