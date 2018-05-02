@@ -67,9 +67,9 @@ func redisServer(commands chan Command) {
 
 func handle(commands chan Command, conn net.Conn) {
 	defer conn.Close()
-
 	scanner := bufio.NewScanner(conn)
 	for scanner.Scan() {
+		io.WriteString(conn, "=>")
 		ln := scanner.Text()
 		fs := strings.Fields(ln)
 
@@ -98,6 +98,14 @@ func main() {
 			log.Println("Error Connecting", err)
 
 		}
+		io.WriteString(conn,
+			"**************************************\n"+
+				`Very basic redis database server.
+		Commands: 
+			SET <key> <value>
+			GET <key>
+			DEL <key>`+
+				"\n**************************************\n")
 		go handle(commands, conn)
 	}
 }
