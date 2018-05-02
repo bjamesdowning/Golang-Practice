@@ -13,6 +13,7 @@ import (
 type Command struct {
 	Fields []string
 	Result chan string
+	Quit   chan string
 }
 
 func redisServer(commands chan Command) {
@@ -49,10 +50,9 @@ func redisServer(commands chan Command) {
 			data[k] = v
 			cmd.Result <- ""
 
-		//case "ALL":
-		//	for _, n := range data {
-		//		cmd.Result <- n
-		//	}
+		case "quit":
+			cmd.Result <- "**Quitting**"
+			cmd.Quit <- "quit"
 
 		case "DEL":
 			k := cmd.Fields[1]
@@ -73,11 +73,18 @@ func handle(commands chan Command, conn net.Conn) {
 		fs := strings.Fields(ln)
 
 		result := make(chan string)
+		quit := make(chan string)
 		commands <- Command{
 			Fields: fs,
 			Result: result,
+			Quit:   quit,
 		}
-		io.WriteString(conn, <-result+"\n")
+		go func() {
+			io.WriteString(conn, <-result+"\n")
+			if <-quit == "quit" {
+				conn.Close()
+			}
+		}()
 	}
 }
 
@@ -100,10 +107,11 @@ func main() {
 		io.WriteString(conn,
 			"**************************************\n"+
 				`Very basic redis database server.
-		Commands: 
-			SET <key> <value>
-			GET <key>
-			DEL <key>`+
+	Commands: 
+		SET <key> <value>
+		GET <key>
+		DEL <key>
+		quit`+
 				"\n**************************************\n")
 		go handle(commands, conn)
 	}
