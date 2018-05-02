@@ -69,7 +69,6 @@ func handle(commands chan Command, conn net.Conn) {
 	defer conn.Close()
 	scanner := bufio.NewScanner(conn)
 	for scanner.Scan() {
-		io.WriteString(conn, "=>")
 		ln := scanner.Text()
 		fs := strings.Fields(ln)
 
