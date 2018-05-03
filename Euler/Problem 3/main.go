@@ -4,7 +4,8 @@ import (
 	"fmt"
 )
 
-//takes way too long (~64min). Attempted pipline model.
+//**What is the largest prime factor of the number 600851475143?**
+//Takes way too long (~47min). Attempted pipline model.
 func main() {
 	f := factorsOf(600851475143)
 	pr := isPrime(f)
