@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/bjamesdowning/Practice/01_hello/hellopkg"
+)
 
 var x = 42 //This is declaring 'x' type int and assigned value 42
 //This is PACKAGE level scope, meaning every func can use it
@@ -8,6 +12,8 @@ var x = 42 //This is declaring 'x' type int and assigned value 42
 func main() {
 	a := 42 //same as 'x' but only accessbile within this block
 	fmt.Println(a)
+
+	hellopkg.Hello()
 }
 
 /* declare variable
