@@ -10,10 +10,12 @@ var x = 42 //This is declaring 'x' type int and assigned value 42
 //This is PACKAGE level scope, meaning every func can use it
 
 func main() {
+	var msg string
 	a := 42 //same as 'x' but only accessbile within this block
 	fmt.Println(a)
-
-	hellopkg.Hello()
+	fmt.Print("Enter Message to Echo: ")
+	fmt.Scan(&msg)
+	hellopkg.Hello(msg)
 }
 
 /* declare variable
