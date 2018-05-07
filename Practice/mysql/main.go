@@ -11,6 +11,7 @@ import (
 //If using docker container running mysql, be sure to use 5.7
 //Latest container image pulls mysql 8 which throws an error about
 //Not supporting the authentication plugin. I'm not sure why.
+//docker command: docker run -p 3306:3306 --name go-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -d mysql:5.7
 func main() {
 	db, err := sql.Open("mysql", "root:password@tcp(:3306)/test")
 	if err != nil {
