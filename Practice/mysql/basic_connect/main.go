@@ -15,7 +15,8 @@ import (
 //docker command: docker run -p 3306:3306 --name go-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -d mysql:5.7
 func main() {
 	//practice using flags. This flag allows you to pass in a value to be added to the test table.
-	value := flag.String("v", "TEST_VALUE", "a value added to table: test")
+	key := flag.String("k", "KEY", "a key is added to table: CMDB")
+	value := flag.String("v", "VALUE", "a value added to table: CMDB")
 	flag.Parse()
 
 	db, err := sql.Open("mysql", "root:password@tcp(:3306)/test")
@@ -24,11 +25,11 @@ func main() {
 	defer db.Close()
 
 	_, err = db.Exec(
-		"CREATE TABLE IF NOT EXISTS test.hello(world varchar(50))")
+		"CREATE TABLE IF NOT EXISTS test.CMDB(RouterID varchar(50), IP_Addr varchar(16))")
 	check(err)
 
 	res, err := db.Exec(
-		"INSERT INTO test.hello(world) VALUES('" + *value + "')")
+		"INSERT INTO test.CMDB(RouterID, IP_Addr) VALUES('" + *key + "','" + *value + "')")
 	check(err)
 
 	rowCount, err := res.RowsAffected()
@@ -36,14 +37,14 @@ func main() {
 
 	log.Printf("inserted %d rows", rowCount)
 
-	rows, err := db.Query("SELECT * FROM test.hello")
+	rows, err := db.Query("SELECT * FROM test.CMDB")
 	check(err)
 
 	for rows.Next() {
-		var s string
-		err = rows.Scan(&s)
+		var k, v string
+		err = rows.Scan(&k, &v)
 		check(err)
-		log.Printf("found row containing %q", s)
+		log.Printf("found row containing %q %q", k, v)
 	}
 	rows.Close()
 }

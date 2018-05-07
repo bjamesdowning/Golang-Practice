@@ -24,24 +24,24 @@ func main() {
 	err = db.Ping()
 	check(err)
 
-	http.HandleFunc("/", readAll)
+	http.HandleFunc("/CMDB", readAll)
 	err := http.ListenAndServe(":8080", nil)
 	check(err)
 }
 
 func readAll(w http.ResponseWriter, req *http.Request) {
-	rows, err := db.Query(`SELECT * FROM test.hello;`)
+	rows, err := db.Query(`SELECT * FROM test.CMDB;`)
 	check(err)
 
 	// data to be used in query
-	var s, name string
+	var s, k, v string
 	s = "RETRIEVED RECORDS:\n"
 
 	// query
 	for rows.Next() {
-		err = rows.Scan(&name)
+		err = rows.Scan(&k, &v)
 		check(err)
-		s += name + "\n"
+		s += k + " " + v + "\n"
 	}
 	fmt.Fprintln(w, s)
 }
