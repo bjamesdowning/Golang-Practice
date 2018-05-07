@@ -19,39 +19,38 @@ func main() {
 	flag.Parse()
 
 	db, err := sql.Open("mysql", "root:password@tcp(:3306)/test")
-	if err != nil {
-		log.Fatal(err)
-	}
+	check(err)
+
 	defer db.Close()
 
 	_, err = db.Exec(
 		"CREATE TABLE IF NOT EXISTS test.hello(world varchar(50))")
-	if err != nil {
-		log.Fatal(err)
-	}
+	check(err)
 
 	res, err := db.Exec(
 		"INSERT INTO test.hello(world) VALUES('" + *value + "')")
-	if err != nil {
-		log.Fatal(err)
-	}
+	check(err)
+
 	rowCount, err := res.RowsAffected()
-	if err != nil {
-		log.Fatal(err)
-	}
+	check(err)
+
 	log.Printf("inserted %d rows", rowCount)
 
 	rows, err := db.Query("SELECT * FROM test.hello")
-	if err != nil {
-		log.Fatal(err)
-	}
+	check(err)
+
 	for rows.Next() {
 		var s string
 		err = rows.Scan(&s)
-		if err != nil {
-			log.Fatal(err)
-		}
+		check(err)
 		log.Printf("found row containing %q", s)
 	}
 	rows.Close()
+}
+
+//function to check errors without rewriting same code repeatedly
+func check(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }
