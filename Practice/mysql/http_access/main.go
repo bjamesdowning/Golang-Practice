@@ -13,7 +13,7 @@ var db *sql.DB
 var err error
 
 //using docker container running mysql 5.7
-//test table by created from origination
+//test db by created from origination, hello table created from another program
 //docker command:
 //docker run -p 3306:3306 --name go-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -d mysql:5.7
 func main() {
