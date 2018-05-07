@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"flag"
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -13,6 +14,10 @@ import (
 //Not supporting the authentication plugin. I'm not sure why.
 //docker command: docker run -p 3306:3306 --name go-mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test -d mysql:5.7
 func main() {
+	//practice using flags. This flag allows you to pass in a value to be added to the test table.
+	value := flag.String("v", "TEST_VALUE", "a value added to table: test")
+	flag.Parse()
+
 	db, err := sql.Open("mysql", "root:password@tcp(:3306)/test")
 	if err != nil {
 		log.Fatal(err)
@@ -26,7 +31,7 @@ func main() {
 	}
 
 	res, err := db.Exec(
-		"INSERT INTO test.hello(world) VALUES('hello world!')")
+		"INSERT INTO test.hello(world) VALUES('" + *value + "')")
 	if err != nil {
 		log.Fatal(err)
 	}
