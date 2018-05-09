@@ -16,9 +16,9 @@ type IP struct {
 }
 
 type RTR struct {
-	Hname string `json:"HOSTNAME"`
-	Uname string `json:"USERNAME"`
-	Pword string `json:"PASSWORD"`
+	Hname string `json:"hostname"`
+	Uname string `json:"username"`
+	Pword string `json:"password"`
 	IP
 }
 
