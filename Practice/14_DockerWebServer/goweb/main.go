@@ -32,4 +32,7 @@ func root(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		log.Fatal(err)
 	}
 	tmpl.ExecuteTemplate(w, "index.gohtml", r.Form)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
