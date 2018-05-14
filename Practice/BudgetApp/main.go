@@ -42,12 +42,10 @@ func added(t total) float64 {
 }
 
 func main() {
-	bill1 := bills{100.00, 200.00, 100.00}
-	income1 := income{1100.00, 900.00}
-	totalIncome := added(income1)
-	totalBills := added(bill1)
-	savingsRec := (totalIncome - totalBills) * 0.2
-	fmt.Println(" You have ", totalIncome, "total income \n",
-		totalBills, "in bills \n", "Therefore, you should send ",
-		savingsRec, "to savings")
+	b := bills{100.00, 200.00, 100.00}
+	i := income{1100.00, 900.00}
+	ttlI := added(i)
+	ttlB := added(b)
+	svgs := (ttlI - ttlB) * 0.2
+	fmt.Printf(" You have %v total income %v in bills \n Therefore, you should send %v to savings", ttlI, ttlB, svgs)
 }
