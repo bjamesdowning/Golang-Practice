@@ -18,7 +18,7 @@ func init() {
 func main() {
 	mux := httprouter.New() //create a new mux as opposed to using DefaultServeMux
 	mux.GET("/", root)
-	http.ListenAndServe(":8080", mux) //pass in handler, mux
+	log.Fatal(http.ListenAndServe(":8080", mux)) //pass in handler, mux
 
 	//below is using default servemux
 	//http.HandleFunc("/", root)
