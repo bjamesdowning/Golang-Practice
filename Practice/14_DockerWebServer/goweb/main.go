@@ -4,9 +4,11 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/julienschmidt/httprouter"
 )
 
-//Test webapp to turn into container
+//Test webapp to turn into container using third party mux
 var tmpl *template.Template
 
 func init() {
@@ -14,11 +16,17 @@ func init() {
 }
 
 func main() {
-	http.HandleFunc("/", root)
-	http.ListenAndServe(":8080", nil)
+	mux := httprouter.New() //create a new mux as opposed to using DefaultServeMux
+	mux.GET("/", root)
+	http.ListenAndServe(":8080", mux) //pass in handler, mux
+
+	//below is using default servemux
+	//http.HandleFunc("/", root)
+	//http.ListenAndServe(":8080", nil)
 }
 
-func root(w http.ResponseWriter, r *http.Request) {
+//with this mux, need to add the 3rd parameter for vars
+func root(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	err := r.ParseForm()
 	if err != nil {
 		log.Fatal(err)
