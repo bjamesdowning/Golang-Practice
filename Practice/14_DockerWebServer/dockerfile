@@ -1,0 +1,5 @@
+FROM scratch
+EXPOSE 8080
+COPY goweb/goweb /
+COPY goweb/templates/ templates
+CMD [/goweb]
