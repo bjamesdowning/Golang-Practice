@@ -1,0 +1,5 @@
+FROM scratch
+EXPOSE 8080
+COPY gowebapp2 /
+COPY templates/ templates
+CMD ["/gowebapp2"]
