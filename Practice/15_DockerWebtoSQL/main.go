@@ -12,6 +12,8 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
+//practice application to run a generic front end to add data to a mysql backend.
+//goal to practice using Docker Compose to have MySQL container and FE app deploy as a service.
 var tmpl *template.Template
 var db *sql.DB
 
