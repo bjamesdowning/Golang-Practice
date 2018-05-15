@@ -16,6 +16,8 @@ func main() {
 	fmt.Print("Enter Message to Echo: ")
 	fmt.Scan(&msg)
 	hellopkg.Hello(msg)
+	new := test{15, 26}
+	new.add()
 }
 
 /* declare variable
