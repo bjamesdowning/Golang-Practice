@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"html/template"
 	"log"
@@ -15,7 +14,8 @@ import (
 //practice application to run a generic front end to add data to a mysql backend.
 //goal to practice using Docker Compose to have MySQL container and FE app deploy as a service.
 var tmpl *template.Template
-var db *sql.DB
+
+//var db *sql.DB
 
 func init() {
 	tmpl = template.Must(template.ParseGlob("templates/*.gohtml"))
@@ -27,63 +27,57 @@ func main() {
 	mux.GET("/", welcome)
 	mux.POST("/insert", insert)
 	mux.GET("/read", read)
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	log.Fatal(http.ListenAndServe("127.0.0.1:8080", mux))
 }
 
 func welcome(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	err := r.ParseForm()
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(w, err)
 	}
 	err = tmpl.ExecuteTemplate(w, "index.gohtml", r.Form)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(w, err)
 	}
 }
 
 func insert(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	db, err := sql.Open("mysql", "root:password@tcp(:3306)/test")
-	if err != nil {
-		log.Fatal("DB Connect Error: ", err)
-	}
+	db := connect()
 	defer db.Close()
 
-	_, err = db.Exec(
+	_, err := db.Exec(
 		"CREATE TABLE IF NOT EXISTS test.table(column_one varchar(50), column_two varchar(50))")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(w, err)
 	}
 
 	err = r.ParseForm()
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(w, err)
 	}
 	k := strings.Join(r.PostForm["key"], "")
 	v := strings.Join(r.PostForm["value"], "")
 	res, err := db.Exec(
 		"INSERT INTO test.table(column_one, column_two) VALUES('" + k + "','" + v + "')")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(w, err)
 	}
 
 	rowCount, err := res.RowsAffected()
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(w, err)
 	}
 
 	fmt.Fprintf(w, "inserted %d rows", rowCount)
 }
 
 func read(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	db, err := sql.Open("mysql", "root:password@tcp(:3306)/test")
-	if err != nil {
-		log.Fatal("DB Connect Error: ", err)
-	}
+	db := connect()
 	defer db.Close()
 
 	rows, err := db.Query(`SELECT * FROM test.table;`)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(w, err)
 	}
 
 	// data to be used in query
@@ -94,7 +88,7 @@ func read(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	for rows.Next() {
 		err = rows.Scan(&k, &v)
 		if err != nil {
-			log.Fatal(err)
+			fmt.Fprintln(w, err)
 		}
 		s += k + " " + v + "\n"
 	}
