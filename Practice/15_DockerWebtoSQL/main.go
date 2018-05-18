@@ -27,7 +27,7 @@ func main() {
 	mux.GET("/", welcome)
 	mux.POST("/insert", insert)
 	mux.GET("/read", read)
-	log.Fatal(http.ListenAndServe("127.0.0.1:8080", mux))
+	log.Fatal(http.ListenAndServe(":8080", mux))
 }
 
 func welcome(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {

@@ -1,12 +1,9 @@
 go-mysql:
   image: 'mysql:5.7'
   environment:
-    - HOST=go-mysql
     - MYSQL_ROOT_PASSWORD=password
     - MYSQL_DATABASE=test
 gowebapp2:
-  image: 'gowebapp2:1'
-  environment:
-    - HOST=127.0.0.1
+  image: 'gowebapp2:latest'
   ports:
     - '8080:8080'
