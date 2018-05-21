@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/bjamesdowning/GoLearning/Practice/01_hello/hellopkg"
+	"github.com/bjamesdowning/Golang-Practice/Practice/01_hello/hellopkg"
 )
 
 var x = 42 //This is declaring 'x' type int and assigned value 42
