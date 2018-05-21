@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/bjamesdowning/Practice/NativeWebAppCourse/api"
+	"github.com/bjamesdowning/GoLearning/Practice/NativeWebAppCourse/api"
 )
 
 //basic echo web server. Allows environment variable PORT to dicate listening port.
