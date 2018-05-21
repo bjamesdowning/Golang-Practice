@@ -11,6 +11,7 @@ type Book struct {
 	ISBN   string
 }
 
+//ToJSON
 func (b Book) ToJSON() []byte {
 	ToJSON, err := json.Marshal(b)
 	if err != nil {
@@ -19,10 +20,17 @@ func (b Book) ToJSON() []byte {
 	return ToJSON
 }
 
+//FromJSON
 func FromJSON(d []byte) Book {
-	return Book{}
+	book := Book{}
+	err := json.Unmarshal(d, &book)
+	if err != nil {
+		panic(err)
+	}
+	return book
 }
 
+//BookHandler
 func BookHandler(w http.ResponseWriter, r *http.Request) {
 
 }
