@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+
+	"github.com/bjamesdowning/Practice/NativeWebAppCourse/api"
 )
 
 //basic echo web server. Allows environment variable PORT to dicate listening port.
@@ -11,6 +13,7 @@ import (
 func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/api/echo", echo)
+	http.HandleFunc("/api/books", api.BookHandler)
 	http.ListenAndServe(port(), nil)
 }
 
