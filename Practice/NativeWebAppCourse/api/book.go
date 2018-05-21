@@ -49,7 +49,7 @@ func AllBooks() []Book {
 	return values
 }
 
-//BooksHandler acts as handler for book endpoint
+//BooksHandler acts as handler for book endpoint for all books
 func BooksHandler(w http.ResponseWriter, r *http.Request) {
 	switch method := r.Method; method {
 	case http.MethodGet:
@@ -74,7 +74,8 @@ func BooksHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func BookHandler(w http.ResponseWrite, r *http.Request) {
+//BookHandler function takes care of single book requests
+func BookHandler(w http.ResponseWriter, r *http.Request) {
 	isbn := r.URL.Path[len("/api/books/"):]
 
 	switch method := r.Method; method {
@@ -100,12 +101,12 @@ func BookHandler(w http.ResponseWrite, r *http.Request) {
 	case http.MethodDelete:
 		DeleteBook(isbn)
 		w.WriteHeader(http.StatusOK)
-	}
 	default:
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Bad Request Method"))
-	}		
+	}
 }
+
 //CreateBook creates a new book if it doesn't exist
 func CreateBook(b Book) (string, bool) {
 	_, exists := books[b.ISBN]
@@ -125,19 +126,22 @@ func writeJSON(w http.ResponseWriter, i interface{}) {
 	w.Write(b)
 }
 
+//GetBook finds book in map based on key of isbn
 func GetBook(isbn string) (Book, bool) {
 	book, found := books[isbn]
 	return book, found
 }
 
-func UpdateBook(isbn string, b book) bool {
+//UpdateBook edits a book within the map
+func UpdateBook(isbn string, b Book) bool {
 	_, exists := books[isbn]
 	if exists {
-		books[isbn] = book
+		books[isbn] = b
 	}
 	return exists
 }
 
+//DeleteBook removes book from map
 func DeleteBook(isbn string) {
 	delete(books, isbn)
 }
