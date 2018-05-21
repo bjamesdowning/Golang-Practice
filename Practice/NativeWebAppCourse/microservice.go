@@ -30,7 +30,7 @@ func port() string {
 //responds with http code 200 and message
 func index(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "Cloud native go course on %s", os.Getenv("PORT"))
+	fmt.Fprintf(w, "Cloud native go course on %s.\nUse /api/echo?message to repeat.\nUse /api/books to receive all books. Get to query. Push with json body to create.\nUse /api/books/<isbn> for specific actions. Put to edit. Delete to remove. Get to search.", os.Getenv("PORT"))
 }
 
 //echos query sent in URL, as in "<server:port>/api/echo?message=Some+Message+here"
