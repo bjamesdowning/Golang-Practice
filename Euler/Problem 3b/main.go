@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-//Faster and simpler solution to Euler problem 4.
+//Faster and simpler solution to Euler problem 3.
 func main() {
 	fmt.Println(findPrime(600851475143, 2))
 }
