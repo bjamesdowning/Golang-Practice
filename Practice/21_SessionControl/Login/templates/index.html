@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Billy Downing -->
+    <title>GoWeb</title>
+</head>
+
+<body>
+    <form method="POST">
+        <input type="email" name="email" placeholder="Email">
+        <br />
+        <input type="text" name="firstname" placeholder="First Name">
+        <br />
+        <input type="text" name="lastname" placeholder="Last Name">
+        <br />
+        <input type="submit">
+        <br />
+    </form>
+    <br />{{if .Email}}
+    <br />
+    <h2>Information:</h2>
+    <br />Email {{.Email}}
+    <br /> First Name {{.Fname}}
+    <br /> Last Name {{.Lname}}
+    <br /> {{end}}
+
+    <h3>
+        <i>
+            <a href="/verify">Verify</a>
+        </i>
+    </h3>
+
+</body>
+
+</html>

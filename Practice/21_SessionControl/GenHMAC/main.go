@@ -8,8 +8,10 @@ import (
 )
 
 func main() {
+	//generate hmac based on input.
 	c := getCode("test@email.com")
 	fmt.Println(c)
+	//show each time the same input will create same output
 	c = getCode("test@email.com")
 	fmt.Println(c)
 }
