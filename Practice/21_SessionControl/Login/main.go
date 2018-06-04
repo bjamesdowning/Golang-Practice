@@ -26,8 +26,9 @@ func init() {
 
 func main() {
 	http.HandleFunc("/", index)
-	http.HandleFunc("/verify", verify)
+	http.HandleFunc("/login", login)
 	http.HandleFunc("/signup", signUp)
+	http.HandleFunc("/verify", verify)
 	http.Handle("/favicon.ico", http.NotFoundHandler())
 	http.ListenAndServe(":8080", nil)
 }
@@ -35,6 +36,39 @@ func main() {
 func index(w http.ResponseWriter, r *http.Request) {
 	u := getUser(w, r)
 	tmpl.ExecuteTemplate(w, "index.html", u)
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+	if loggedIn(r) {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+	if r.Method == http.MethodPost {
+		email := r.FormValue("email")
+		pword := r.FormValue("password")
+
+		u, ok := dbUsers[email]
+		if !ok {
+			http.Error(w, "Username/Password Error", http.StatusForbidden)
+			return
+		}
+		err := bcrypt.CompareHashAndPassword(u.Pword, []byte(pword))
+		if err != nil {
+			http.Error(w, "Username/Password Error", http.StatusForbidden)
+			return
+		}
+		//Username and Password match. Create a session
+		sID, _ := uuid.NewV4()
+		c := &http.Cookie{
+			Name:  "session",
+			Value: sID.String(),
+		}
+		http.SetCookie(w, c)
+		dbSessions[c.Value] = email
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+	tmpl.ExecuteTemplate(w, "login.html", nil)
 }
 
 func signUp(w http.ResponseWriter, r *http.Request) {
