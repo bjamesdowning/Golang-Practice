@@ -8,24 +8,18 @@
 </head>
 
 <body>
-    <form method="POST">
-        <input type="email" name="email" placeholder="Email">
-        <br />
-        <input type="text" name="firstname" placeholder="First Name">
-        <br />
-        <input type="text" name="lastname" placeholder="Last Name">
-        <br />
-        <input type="submit">
-        <br />
-    </form>
     <br />{{if .Email}}
     <br />
-    <h2>Information:</h2>
-    <br />Email {{.Email}}
-    <br /> First Name {{.Fname}}
-    <br /> Last Name {{.Lname}}
-    <br /> {{end}}
+    <h2>Welcome, </h2>
+    {{.Fname}} {{.Lname}} {{end}}
+    <br />
 
+    <h3>
+        <i>
+            <a href="/signup">Signup</a>
+        </i>
+    </h3>
+    <br />
     <h3>
         <i>
             <a href="/verify">Verify</a>
