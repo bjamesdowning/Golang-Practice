@@ -10,9 +10,14 @@
 <body>
     <br />{{if .Email}}
     <br />
-    <h2>Welcome, </h2>
-    {{.Fname}} {{.Lname}} {{end}}
+    <h2>Welcome, {{.Fname}} {{.Lname}} </h2>
     <br />
+    <h3>
+        <i>
+            <a href="/logout">Logout</a>
+        </i>
+    </h3>
+    {{end}}
 
     <ul>
         <li>

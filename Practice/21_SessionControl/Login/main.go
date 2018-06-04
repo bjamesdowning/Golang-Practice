@@ -13,6 +13,7 @@ type user struct {
 	Email string
 	Fname string
 	Lname string
+	Role  string
 	Pword []byte
 }
 
@@ -27,8 +28,10 @@ func init() {
 func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/login", login)
+	http.HandleFunc("/logout", logout)
 	http.HandleFunc("/signup", signUp)
-	http.HandleFunc("/verify", verify)
+	http.HandleFunc("/adminhome", adminHome)
+	http.HandleFunc("/userhome", userHome)
 	http.Handle("/favicon.ico", http.NotFoundHandler())
 	http.ListenAndServe(":8080", nil)
 }
@@ -65,10 +68,34 @@ func login(w http.ResponseWriter, r *http.Request) {
 		}
 		http.SetCookie(w, c)
 		dbSessions[c.Value] = email
+
+		if u.Role == "admin" {
+			http.Redirect(w, r, "/adminhome", http.StatusSeeOther)
+			return
+		} else if u.Role == "user" {
+			http.Redirect(w, r, "/userhome", http.StatusSeeOther)
+			return
+		}
+	}
+	tmpl.ExecuteTemplate(w, "login.html", nil)
+}
+
+func logout(w http.ResponseWriter, r *http.Request) {
+	if !loggedIn(r) {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
-	tmpl.ExecuteTemplate(w, "login.html", nil)
+	c, _ := r.Cookie("session")
+	//remove session from db
+	delete(dbSessions, c.Value)
+	//delete cookie by assigning new cookie with negative age value
+	c = &http.Cookie{
+		Name:   "session",
+		Value:  "",
+		MaxAge: -1,
+	}
+	http.SetCookie(w, c)
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func signUp(w http.ResponseWriter, r *http.Request) {
@@ -83,6 +110,7 @@ func signUp(w http.ResponseWriter, r *http.Request) {
 		email := r.FormValue("email")
 		fname := r.FormValue("firstname")
 		lname := r.FormValue("lastname")
+		role := r.FormValue("role")
 		pword := r.FormValue("password")
 		//Check if username is already in the db
 		if _, ok := dbUsers[email]; ok {
@@ -103,32 +131,46 @@ func signUp(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Server Error, Password Related", http.StatusInternalServerError)
 			return
 		}
-		u = user{email, fname, lname, bs}
+		u = user{email, fname, lname, role, bs}
 		dbSessions[c.Value] = email
 		dbUsers[email] = u
-
-		http.Redirect(w, r, "/", http.StatusSeeOther)
-		return
+		if u.Role == "admin" {
+			http.Redirect(w, r, "/adminhome", http.StatusSeeOther)
+			return
+		} else if u.Role == "user" {
+			http.Redirect(w, r, "/userhome", http.StatusSeeOther)
+			return
+		}
 	}
 
 	tmpl.ExecuteTemplate(w, "signup.html", u)
 
 }
 
-func verify(w http.ResponseWriter, r *http.Request) {
-	//Grab cookie. If no cookie, redirect to index
-	c, err := r.Cookie("session")
-	if err != nil {
+func adminHome(w http.ResponseWriter, r *http.Request) {
+	u := getUser(w, r)
+	if !loggedIn(r) {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
-	email, ok := dbSessions[c.Value]
-	if !ok {
+	if u.Role != "admin" {
+		http.Error(w, "Only Admins Allowed", http.StatusForbidden)
+		return
+	}
+	tmpl.ExecuteTemplate(w, "admin.html", u)
+}
+
+func userHome(w http.ResponseWriter, r *http.Request) {
+	u := getUser(w, r)
+	if !loggedIn(r) {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
-	u := dbUsers[email]
-	tmpl.ExecuteTemplate(w, "verify.html", u)
+	if u.Role != "user" {
+		http.Error(w, "Users Homepage", http.StatusForbidden)
+		return
+	}
+	tmpl.ExecuteTemplate(w, "user.html", u)
 }
 
 func getUser(w http.ResponseWriter, r *http.Request) user {

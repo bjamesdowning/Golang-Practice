@@ -4,15 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <!-- Billy Downing -->
-    <title>GoWeb</title>
+    <title>Admin</title>
 </head>
 
 <body>
-    <h2>Information:</h2>
+    <h2>ADMIN ONLY:</h2>
     <br /> {{if .Email}} Email {{.Email}}
     <br /> First Name {{.Fname}}
     <br /> Last Name {{.Lname}}
+    <br /> Role: {{.Role}}
     <br /> {{end}}
+    <a href="/">Home</a>
+    <br />
+    <h3>
+        <i>
+            <a href="/logout">Logout</a>
+        </i>
+    </h3>
 </body>
 
 </html>
