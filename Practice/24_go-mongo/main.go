@@ -30,8 +30,5 @@ func main() {
 	session.DB("go-mongo").C("users").Insert(u)
 	fmt.Println("*************Getting User******************")
 
-	if err = session.DB("go-mongo").C("users").FindId("5b21577a0e48dc396663b77d").One(&v); err != nil {
-		fmt.Println(err)
-	}
-
+	session.DB("go-mongo").C("users").FindId("5b21577a0e48dc396663b77d").One(&v)
 }
