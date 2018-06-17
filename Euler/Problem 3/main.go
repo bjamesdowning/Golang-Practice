@@ -2,11 +2,24 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
+	"runtime/trace"
 )
 
 //**What is the largest prime factor of the number 600851475143?**
 //Takes way too long (~47min). Attempted pipline model.
 func main() {
+	file, err := os.Create("trace.out")
+	if err != nil {
+		log.Fatalf("failed to create trace output file: %v", err)
+	}
+	defer file.Close()
+
+	if err := trace.Start(file); err != nil {
+		log.Fatalf("failed to start trace: %v", err)
+	}
+	defer trace.Stop()
 	f := factorsOf(600851475143)
 	pr := isPrime(f)
 	fmt.Println(<-pr)
