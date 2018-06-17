@@ -3,13 +3,14 @@ package main
 import (
 	"flag"
 	"fmt"
+	"strconv"
 )
 
 //Find the sum of the digits in the number 100!
 func main() {
 	f := flag.Int("n", 0, "Integer")
 	flag.Parse()
-	fmt.Println(getFactorial(*f))
+	addInts(getFactorial(*f))
 }
 
 func getFactorial(n int) int {
@@ -17,4 +18,17 @@ func getFactorial(n int) int {
 		n *= i
 	}
 	return n
+}
+
+func addInts(n int) {
+	var res int
+	itoS := strconv.Itoa(n)
+	for _, i := range itoS {
+		ni, err := strconv.Atoi(string(i))
+		if err != nil {
+			fmt.Println("ERROR ERROR:", err)
+		}
+		res += ni
+	}
+	fmt.Println(res)
 }
