@@ -7,11 +7,12 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+//User is a struct
 type User struct {
 	Name   string        `json:"name" bson:"name"`
-	Gender string        `json:"gender" bson":gender"`
+	Gender string        `json:"gender" bson:"gender"`
 	Age    int           `json:"age" bson:"age"`
-	Id     bson.ObjectId `json:"id" bson:"id"`
+	ID     bson.ObjectId `json:"id" bson:"id"`
 }
 
 func main() {
@@ -23,7 +24,7 @@ func main() {
 		Name:   "John",
 		Gender: "Female",
 		Age:    22,
-		Id:     bson.NewObjectId(),
+		ID:     bson.NewObjectId(),
 	}
 
 	v := User{}
