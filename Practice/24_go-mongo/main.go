@@ -58,6 +58,8 @@ func main() {
 		if err != nil {
 			fmt.Println("Could not add user:", err)
 		}
+	} else if err != nil {
+		fmt.Println("Server Error Finding User: ", err)
 	} else {
 		fmt.Println("User Already Exists")
 	}
