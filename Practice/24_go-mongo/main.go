@@ -15,8 +15,6 @@ type User struct {
 	ID     bson.ObjectId `json:"_id" bson:"_id"`
 }
 
-var ErrNotFound error
-
 func main() {
 	session, err := mgo.Dial("localhost:27017")
 	if err != nil {
@@ -44,6 +42,7 @@ func main() {
 	}
 	fmt.Println(v)
 
+	//test case - check existance of user before add
 	newUser := User{
 		Name:   "Notnew",
 		Gender: "Male",
