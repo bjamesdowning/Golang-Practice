@@ -4,13 +4,34 @@ import (
 	"bytes"
 	"crypto/tls"
 	"fmt"
+	"html/template"
 	"io/ioutil"
 	"net/http"
 )
 
+var tmpl *template.Template
+
+func init() {
+	tmpl = template.Must(template.ParseGlob("templates/*.html"))
+}
+
 func main() {
+	///
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
+	http.HandleFunc("/", index)
+	http.HandleFunc("/login", restConf)
+	http.ListenAndServe(":8080", nil)
+}
+
+func index(w http.ResponseWriter, r *http.Request) {
+	tmpl.ExecuteTemplate(w, "index.html", nil)
+}
+
+func restConf(w http.ResponseWriter, r *http.Request) {
 	url := "https://172.16.167.150:443/restconf/data/Cisco-IOS-XE-native:native/interface/"
-	tr := &http.Transport{
+
+	ignoreCert := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 
@@ -26,9 +47,7 @@ func main() {
 		]
 	 }`)
 
-	client := &http.Client{
-		Transport: tr,
-	}
+	client := &http.Client{Transport: ignoreCert}
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(content))
 	if err != nil {
 		fmt.Println(err)
@@ -45,6 +64,5 @@ func main() {
 		fmt.Println(err)
 	}
 	defer resp.Body.Close()
-	fmt.Println(string(body))
-
+	fmt.Fprint(w, string(body))
 }
