@@ -1,0 +1,10 @@
+.commandform{
+    background-color: rgb(42, 131, 248);    
+    border: none;
+    color: white;
+    text-align: center;
+    width: 400px;
+    height: 300px;
+    margin: 20px auto 20px auto;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
