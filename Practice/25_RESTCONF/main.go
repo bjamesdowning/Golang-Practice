@@ -20,7 +20,7 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	http.HandleFunc("/", index)
-	http.HandleFunc("/login", restConf)
+	http.HandleFunc("/restconf", restConf)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -29,30 +29,36 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func restConf(w http.ResponseWriter, r *http.Request) {
-	url := "https://172.16.167.150:443/restconf/data/Cisco-IOS-XE-native:native/interface/"
+	trgt := r.FormValue("dns")
+	url := "https://" + trgt + ":9443/restconf/data/ietf-interfaces:interfaces"
 
 	ignoreCert := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 
 	content := []byte(`{
-		"Cisco-IOS-XE-native:Port-channel": [
-		  {
-			"name": "1", 
-			"description": "This is a port-channel interace",
-			"delay": 22222, 
-			"load-interval": 30, 
-			"mtu": 1501
-		  }
-		]
-	 }`)
+		"ietf-interfaces:interface": {
+			"name": "Loopback102",
+			"description": "Configured by RESTCONF",
+			"type": "iana-if-type:softwareLoopback",
+			"enabled": true,
+			"ietf-ip:ipv4": {
+				"address": [
+					{
+						"ip": "101.101.102.103",
+						"netmask": "255.255.255.255"
+					}
+				]
+			}
+		}
+	}`)
 
 	client := &http.Client{Transport: ignoreCert}
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(content))
 	if err != nil {
 		fmt.Println(err)
 	}
-	req.SetBasicAuth("cisco", "cisco")
+	req.SetBasicAuth("root", "D_Vay!_10&")
 	req.Header.Add("Content-Type", "application/yang-data+json")
 	req.Header.Add("Accept", "application/yang-data+json")
 	resp, err := client.Do(req)
