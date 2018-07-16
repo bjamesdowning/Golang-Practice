@@ -1,8 +1,26 @@
-{
-    "Key1": [1,2,3,4],
-    "Key2": "String 2",
-    "Key3": 100,
-    "Key4": "Value 4",
-    "Key5": {"SubKey1": "SubValue1", "SubKey2":"SubValue2"},
-    "Key6":["arr","of", "strings"]
-}
+[
+    {
+        "fname": "John",
+        "lname": "Doe",
+        "email": "Jdoe@email.com",
+        "age": 27
+    },
+    {
+        "fname": "Dana",
+        "lname": "Sumthin",
+        "email": "Dsumthin@email.com",
+        "age": 27
+    },
+    {
+        "fname": "Jerry",
+        "lname": "Else",
+        "email": "JElse@email.com",
+        "age": 27
+    },
+    {
+        "fname": "Phil",
+        "lname": "Other",
+        "email": "Pother@email.com",
+        "age": 27
+    }
+]
