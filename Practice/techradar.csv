@@ -1,85 +1,85 @@
 name,quadrant,ring,isNew,description
-VMware Horizon,Applications,Manage-Run,TRUE,"<p>The continued adoption of containers for deployments, especially <a href=""https://www.thoughtworks.com/radar/platforms/docker"">Docker</a>, has made <strong>container security scanning</strong> a must-have technique and we've moved this technique into Adopt to reflect that. Specifically, containers introduced a new path for security issues; it's vital that you use tools to scan and check containers during deployment. We prefer using automated scanning tools that run as part of the deployment pipeline.</p>"
-VMware vSphere with Tanzu,Platforms,Build-Deliver,TRUE,Test
-RedHat Openshift,Platforms,Build-Deliver,TRUE,Test
-HashiCorp Terraform,Tools,Build-Deliver,TRUE,Test
-Cisco SecureX,Security,Trial,FALSE,Test
-VMware Carbon Black,Security,Build-Deliver,FALSE,Test
-Veeam,Tools,Trial,FALSE,Test
-VMware NSX-T,Platforms,Manage-Run,TRUE,Test
-VMware vSphere,Platforms,Manage-Run,TRUE,Test
-Dell VxRail,Platforms,Manage-Run,TRUE,Test
-VMware Bitfusion,Applications,Trial,FALSE,Test
-VMware Cloud on AWS,Platforms,Manage-Run,TRUE,Test
-VMware VeloCloud,Platforms,Assess,FALSE,Test
-VMware Cloud Disaster Recovery,Tools,Build-Deliver,FALSE,Test
-Dell PowerStore,Platforms,Manage-Run,TRUE,Test
-Cisco Tetration,Tools,Trial,FALSE,Test
-RedHat Ansible,Tools,Build-Deliver,TRUE,Test
-vRealize Operations Manager,Tools,Manage-Run,TRUE,Test
-vRealize Automation,Tools,Manage-Run,TRUE,Test
-vRealize Network Insight,Tools,Manage-Run,TRUE,Test
-vRealize LogInsight,Tools,Manage-Run,TRUE,Test
-Dell PowerScale,Platforms,Manage-Run,TRUE,Test
-VMware Cloud Foundation,Platforms,Manage-Run,TRUE,Test
-Google Cloud VMware Engine,Platforms,Assess,FALSE,Test
-Azure VMware Solution,Platforms,Assess,FALSE,Test
-Oracle Cloud VMware Solution,Platforms,Assess,FALSE,Test
-Rancher,Platforms,Assess,FALSE,Test
-Horizon Azure Cloud,Applications,Assess,FALSE,Test
-AWS Elastic Kubernetes Service (EKS),Platforms,Build-Deliver,FALSE,Test
-AWS Elastic Compute Cloud (EC2),Platforms,Build-Deliver,FALSE,Test
-AWS Simple Storage Service (S3),Platforms,Build-Deliver,FALSE,Test
-AWS S3 Glacier,Platforms,Build-Deliver,FALSE,Test
-Cisco Umbrella,Security,Trial,FALSE,Test
-Cisco Viptella,Platforms,Trial,FALSE,Test
-Cisco DNA Center,Platforms,Trial,FALSE,Test
-Dell APEX,Platforms,Assess,FALSE,Test
-Dell PowerProtect,Platforms,Assess,FALSE,Test
-Cisco Duo,Security,Manage-Run,FALSE,Test
-Meraki SDWAN,Platforms,Trial,FALSE,Test
-AWS Workspaces,Applications,Assess,FALSE,Test
-SoulMachines,Applications,Trial,FALSE,Test
-AWS Quicksight,Applications,Assess,FALSE,Test
-RedHat Openshift on AWS,Platforms,Trial,FALSE,Test
-RedHat Openshift Dedicated,Platforms,Trial,FALSE,Test
-Azure RedHat Openshift,Platforms,Assess,FALSE,Test
-RedHat Openshift on GCP,Platforms,Assess,FALSE,Test
-RedHat Advanced Cluster Manage-Runment,Applications,Assess,FALSE,Test
-VMware Tanzu Mission Control,Applications,Build-Deliver,TRUE,Test
-VMware Tanzu Service Mesh,Applications,Assess,FALSE,Test
-Dell Integrated Data Protection Appliance (IDPA),Platforms,Manage-Run,TRUE,Test
-Cisco Firepower,Security,Manage-Run,TRUE,Test
-Palo Alto NGFW,Security,Manage-Run,TRUE,
-Palo Alto Cortex,Security,Build-Deliver,TRUE,
-ExtraHop Reveal(x),Security,Build-Deliver,TRUE,
-Darktrace,Security,Build-Deliver,TRUE,
-Forcepoint DEP,Security,Build-Deliver,TRUE,
-Forcepoint DUP,Security,Build-Deliver,TRUE,
-VMware Carbon Black,Security,Build-Deliver,TRUE,
-Cisco AMP,Security,Manage-Run,TRUE,
-Forcepoint Guard,Security,Trial,TRUE,
-AlertLogic NDR,Security,Manage-Run,TRUE,
-DELL Cyber Recovery Vault,Security,Build-Deliver,TRUE,
-Cisco Cloudlock,Security,Build-Deliver,TRUE,
-Cisco Tetration SaaS,Security,Trial,TRUE,
-Cisco ISE,Security,Build-Deliver,TRUE,
-Cisco ACI,Security,Trial,TRUE,
-Cisco StealthWatch,Security,Build-Deliver,TRUE,
-MicroFocus Voltage,Security,Trial,TRUE,
-MicroFocus Fortify,Security,Trial,TRUE,
-OKTA IAM SSO,Security,Build-Deliver,TRUE,
-Forcepoint CASB,Security,Trial,TRUE,
-SecureWorks Taegis XDR,Security,Trial,TRUE,
-SecureWorks Taegis VDR,Security,Trial,TRUE,
-Guardicore MS,Security,Assess,TRUE,
-Appgate SDP,Security,Assess,TRUE,
-Intrusion Shield,Security,Assess,TRUE,
-Splunk Enterprise,Security,Assess,TRUE,
-Proofpoint ES,Security,Build-Deliver,TRUE,
-Proofpoint EUA,Security,Trial,TRUE,
-Cisco CES,Security,Build-Deliver,TRUE,
-Cisco WSA,Security,Trial,TRUE,
-Cisco SecureX,Security,Trial,TRUE,
-Cisco Meraki MX NGFW,Security,Manage-Run,TRUE,
-Dell Integrated Data Protection Appliance (IDPA),Platforms,Manage-Run,FALSE,Test
+VMware Horizon,Applications,Manage,TRUE,"<p>The continued adoption of containers for deployments, especially <a href=""https://www.thoughtworks.com/radar/platforms/docker"">Docker</a>, has made <strong>container security scanning</strong> a must-have technique and we've moved this technique into Adopt to reflect that. Specifically, containers introduced a new path for security issues; it's vital that you use tools to scan and check containers during deployment. We prefer using automated scanning tools that run as part of the deployment pipeline.</p>"
+VMware vSphere with Tanzu,Platforms,Deliver,TRUE,
+RedHat Openshift,Platforms,Deliver,TRUE,
+HashiCorp Terraform,Tools,Deliver,TRUE,
+Cisco SecureX,Security,Sell,FALSE,
+VMware Carbon Black,Security,Deliver,FALSE,
+Veeam,Tools,Sell,FALSE,
+VMware NSX-T,Platforms,Manage,TRUE,
+VMware vSphere,Platforms,Manage,TRUE,
+Dell VxRail,Platforms,Manage,TRUE,
+VMware Bitfusion,Applications,Sell,FALSE,
+VMware Cloud on AWS,Platforms,Manage,TRUE,
+VMware VeloCloud,Platforms,Pursue,FALSE,
+VMware Cloud Disaster Recovery,Tools,Deliver,FALSE,
+Dell PowerStore,Platforms,Manage,TRUE,
+Cisco Tetration,Tools,Sell,FALSE,
+RedHat Ansible,Tools,Deliver,TRUE,
+vRealize Operations Manager,Tools,Manage,TRUE,
+vRealize Automation,Tools,Manage,TRUE,
+vRealize Network Insight,Tools,Manage,TRUE,
+vRealize LogInsight,Tools,Manage,TRUE,
+Dell PowerScale,Platforms,Manage,TRUE,
+VMware Cloud Foundation,Platforms,Manage,TRUE,
+Google Cloud VMware Engine,Platforms,Pursue,FALSE,
+Azure VMware Solution,Platforms,Pursue,FALSE,
+Oracle Cloud VMware Solution,Platforms,Pursue,FALSE,
+Rancher,Platforms,Pursue,FALSE,
+Horizon Azure Cloud,Applications,Pursue,FALSE,
+AWS Elastic Kubernetes Service (EKS),Platforms,Deliver,FALSE,
+AWS Elastic Compute Cloud (EC2),Platforms,Deliver,FALSE,
+AWS Simple Storage Service (S3),Platforms,Deliver,FALSE,
+AWS S3 Glacier,Platforms,Deliver,FALSE,
+Cisco Umbrella,Security,Sell,FALSE,
+Cisco Viptella,Platforms,Sell,FALSE,
+Cisco DNA Center,Platforms,Sell,FALSE,
+Dell APEX,Platforms,Pursue,FALSE,
+Dell PowerProtect,Platforms,Pursue,FALSE,
+Cisco Duo,Security,Manage,FALSE,
+Meraki SDWAN,Platforms,Sell,FALSE,
+AWS Workspaces,Applications,Pursue,FALSE,
+SoulMachines,Applications,Sell,FALSE,
+AWS Quicksight,Applications,Pursue,FALSE,
+RedHat Openshift on AWS,Platforms,Sell,FALSE,
+RedHat Openshift Dedicated,Platforms,Sell,FALSE,
+Azure RedHat Openshift,Platforms,Pursue,FALSE,
+RedHat Openshift on GCP,Platforms,Pursue,FALSE,
+RedHat Advanced Cluster Manage-Runment,Applications,Pursue,FALSE,
+VMware Tanzu Mission Control,Applications,Deliver,TRUE,
+VMware Tanzu Service Mesh,Applications,Pursue,FALSE,
+Dell Integrated Data Protection Appliance (IDPA),Platforms,Manage,TRUE,
+Cisco Firepower,Security,Manage,TRUE,
+Palo Alto NGFW,Security,Manage,TRUE,
+Palo Alto Cortex,Security,Deliver,TRUE,
+ExtraHop Reveal(x),Security,Deliver,TRUE,
+Darktrace,Security,Deliver,TRUE,
+Forcepoint DEP,Security,Deliver,TRUE,
+Forcepoint DUP,Security,Deliver,TRUE,
+VMware Carbon Black,Security,Deliver,TRUE,
+Cisco AMP,Security,Manage,TRUE,
+Forcepoint Guard,Security,Sell,TRUE,
+AlertLogic NDR,Security,Manage,TRUE,
+DELL Cyber Recovery Vault,Security,Deliver,TRUE,
+Cisco Cloudlock,Security,Deliver,TRUE,
+Cisco Tetration SaaS,Security,Sell,TRUE,
+Cisco ISE,Security,Deliver,TRUE,
+Cisco ACI,Security,Sell,TRUE,
+Cisco StealthWatch,Security,Deliver,TRUE,
+MicroFocus Voltage,Security,Sell,TRUE,
+MicroFocus Fortify,Security,Sell,TRUE,
+OKTA IAM SSO,Security,Deliver,TRUE,
+Forcepoint CASB,Security,Sell,TRUE,
+SecureWorks Taegis XDR,Security,Sell,TRUE,
+SecureWorks Taegis VDR,Security,Sell,TRUE,
+Guardicore MS,Security,Pursue,TRUE,
+Appgate SDP,Security,Pursue,TRUE,
+Intrusion Shield,Security,Pursue,TRUE,
+Splunk Enterprise,Security,Pursue,TRUE,
+Proofpoint ES,Security,Deliver,TRUE,
+Proofpoint EUA,Security,Sell,TRUE,
+Cisco CES,Security,Deliver,TRUE,
+Cisco WSA,Security,Sell,TRUE,
+Cisco SecureX,Security,Sell,TRUE,
+Cisco Meraki MX NGFW,Security,Manage,TRUE,
+Dell Integrated Data Protection Appliance (IDPA),Platforms,Manage,FALSE,
